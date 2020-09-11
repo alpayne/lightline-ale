@@ -106,6 +106,19 @@ let g:lightline#ale#indicator_errors = "\uf05e"
 let g:lightline#ale#indicator_ok = "\uf00c"
 ```
 
+### Merge Info and Warning Indicators
+
+Prior to the change in January 2020 *lightline-ale* would show only error and non-error indicators on the status line. If you want to revert to this behaviour, set the `g:lightline#ale#merge_info_to_warning` to 1. Note that this only changes the lightline indicator. If `g:ale_sign_info` is set, ALE will still show different indicators in the ALE gutter. 
+
+```viml
+" Show all ALE info messages as warnings in shell script files
+autocmd FileType sh call BashOptions()
+function BashOptions()
+  let g:lightline#ale#merge_info_to_warning = 1
+  unlet g:ale_sign_info
+endfunction
+```
+
 ## License
 
 Released under the [MIT License](LICENSE)
